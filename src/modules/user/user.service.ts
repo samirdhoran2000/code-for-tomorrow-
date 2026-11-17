@@ -7,4 +7,8 @@ export class UserService {
   create(name: string): Promise<User> {
     return this.users.create(name);
   }
+
+  list(): Promise<User[]> {
+    return this.users.list();
+  }
 }

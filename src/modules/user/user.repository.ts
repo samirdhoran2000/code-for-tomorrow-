@@ -18,6 +18,13 @@ export class UserRepository {
     return toUser(rows[0]);
   }
 
+  async list(): Promise<User[]> {
+    const { rows } = await pool.query<UserRow>(
+      'SELECT id, name, created_at FROM users ORDER BY created_at ASC',
+    );
+    return rows.map(toUser);
+  }
+
   async existsAll(ids: string[]): Promise<boolean> {
     const unique = [...new Set(ids)];
     const { rows } = await pool.query<{ count: number }>(

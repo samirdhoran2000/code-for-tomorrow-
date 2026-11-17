@@ -10,4 +10,9 @@ export class UserController {
     const user = await this.service.create(name);
     res.status(201).json(user);
   };
+
+  list = async (_req: Request, res: Response): Promise<void> => {
+    const users = await this.service.list();
+    res.status(200).json({ users });
+  };
 }
